@@ -1,0 +1,128 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rose Day</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: lavender;
+        font-family: 'Georgia', serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 {
+        color: #b30059;
+        text-align: center;
+        z-index: 2;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+
+    .floating {
+        position: absolute;
+        animation: float 10s linear infinite;
+        opacity: 0.9;
+    }
+
+    .rose {
+        font-size: 32px;
+    }
+
+    .heart {
+        font-size: 14px;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(110vh);
+        }
+        to {
+            transform: translateY(-10vh);
+        }
+    }
+
+    .letter {
+        width: 160px;
+        height: 110px;
+        background: #fff;
+        border: 2px solid #ff4d6d;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 3;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: transform 0.3s;
+    }
+
+    .letter:hover {
+        transform: scale(1.05);
+    }
+
+    .letter span {
+        color: #ff4d6d;
+        font-weight: bold;
+    }
+
+    .message {
+        margin-top: 15px;
+        font-size: 20px;
+        color: #800040;
+        display: none;
+        z-index: 3;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<h1>Happy Rose Day, baby Eli 🌹<br>Dada loves you a lot</h1>
+
+<div class="letter" onclick="openLetter()">
+    <span>💌 Click me</span>
+</div>
+
+<div class="message" id="secret">
+    You will always be my princess 👑❤️
+</div>
+
+<script>
+    function openLetter() {
+        document.getElementById("secret").style.display = "block";
+    }
+
+    function createFloatingItems() {
+        const symbols = ["🌹", "❤️", "🤍"];
+        for (let i = 0; i < 40; i++) {
+            const item = document.createElement("div");
+            item.classList.add("floating");
+
+            const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            item.innerHTML = symbol;
+
+            if (symbol === "🌹") {
+                item.classList.add("rose");
+            } else {
+                item.classList.add("heart");
+            }
+
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.animationDuration = (6 + Math.random() * 6) + "s";
+            item.style.fontSize = (12 + Math.random() * 24) + "px";
+
+            document.body.appendChild(item);
+        }
+    }
+
+    createFloatingItems();
+</script>
+
+</body>
+</html>
